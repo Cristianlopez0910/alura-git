@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="es"> <!--Definimos el lenguaje que esta escrito el texto para ayudar al traductor -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Para que reconozca todos los caracteres -->
+    <title>EncriptadorDesencriptador</title> <!-- Palabras claves para el navegador -->
+    <link rel="stylesheet" href="reset1.css"> <!-- Llamo a reset.css para eliminar conf. por defector del navegador-->
+    <link rel="stylesheet" href="encriptadorDesencriptador.css">
+    <!--Configuro el aspecto de mis etiquetas, iagenes etc -->
+</head>
+
+<body>
+
+    <header>
+        <div class="caja">
+            <h1><img id="logoalura" src="proyecto/oracle-alura.png" alt="Logo Alura Latam"></a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="https://es.wikipedia.org/wiki/Enigma_(m%C3%A1quina)">Maquina enigma<a></a></li>
+
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <main class="cajadetextos">
+        
+        <form method="post" action="#">
+            <input type="text" id="entradatexto" style="text-transform: lowercase" pattern="[a-z]" required=""
+                autocomplete="off" placeholder="Ingrese texto aqui">
+
+        </form>
+        
+        <div class="repuestaMjs">
+            <img id="imagen1" src="proyecto/imagen final.png">
+            <h2 id="texto1">Ningun mensaje fue encontrado</h2>
+            <textarea name="" id="texto2" cols="8" rows="80">Ingrese el texto a encriptar o Desencriptar</textarea>
+
+        </div>
+        <div class="botones">
+            <button class="botonEncriptar">Mostrar texto escrito</button>
+            <button>Desencriptar</button>
+            <button>Copiar</button>
+        </div>
+
+
+    </main>
+    
+</body>
+
+<footer>
+
+</footer>
+
+</html>
+<script>
+
+
+    var textoencriptado;
+
+    var input = document.getElementById("entradatexto");
+
+    function mostrarTexto() {
+
+        textoencriptado = encriptado(input.value);
+        /* entradatexto.value="";   Borro lo escrito en input(entrada de texto)*/
+
+
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = mostrarTexto;
+
+
+    /*
+    `La letra "e" es convertida para "enter"`
+    `La letra "i" es convertida para "imes"`
+    `La letra "a" es convertida para "ai"`
+    `La letra "o" es convertida para "ober"`
+    `La letra "u" es convertida para "ufat"`
+    */
+    function conversorVocales(letra) {
+        var conversion = " ";
+        if (letra == "a") {
+            return conversion = "ai";
+        }
+        if (letra == "e") {
+            return conversion = "enter";
+        }
+        if (letra == "i") {
+            return conversion = "imes";
+        }
+        if (letra == "o") {
+            return conversion = "ober";
+        }
+        if (letra == "u") {
+            return conversion = "ufat";
+        }
+        conversion = letra;
+        return conversion;
+    }
+
+    function msjGuardadoArray(msj) {			// Guardo en un array el msj para luego encriptar, unica parte extraida de internet
+        let arr = [];
+        for (let i of msj) {
+            arr.push(i);
+        }
+        return arr;
+    }
+    function imprimir(frase) {
+        document.write("<big>" + frase + "</big>");
+
+    }
+    function encriptado(texto) {
+        let arr = [];
+        arr = msjGuardadoArray(texto);
+        var msjEncriptado = "";
+        for (i = 0; i < arr.length; i++) {
+            //imprimir(msjEncriptado = msjEncriptado + conversorVocales(arr[i]));
+            msjEncriptado += conversorVocales(arr[i]);
+
+        }
+        return msjEncriptado;
+    }
+    function vocalDesencriptado(vocal) {
+        var salto = 0;
+        if (vocal == "a") {
+            return salto = 1;
+        }
+        if (vocal == "e") {
+            return salto = 4;
+        }
+        if (vocal == "i") {
+            return salto = 3;
+        }
+        if (vocal == "o") {
+            return salto = 3;
+        }
+        if (vocal == "u") {
+            return conversion = 3;
+        }
+    }
+    function desencriptado(texto) {
+        let arr = [];
+        arr = msjGuardadoArray(texto);
+        msjDesencriptado = "";
+        for (i = 0; i < arr.length; i++) {
+            var bandera = true;
+            if (arr[i] != "a" && arr[i] != "e" && arr[i] != "i" && arr[i] != "o" && arr[i] != "u") {
+                msjDesencriptado += arr[i];
+                bandera = false;
+
+            }
+            if (bandera == true) {
+                msjDesencriptado += arr[i];
+                i += vocalDesencriptado(arr[i]);
+            }
+
+
+
+        }
+        return msjDesencriptado;
+    }
+</script>

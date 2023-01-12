@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css"> 
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="script.js" ></script>
+    <title>Chanllenge grupo 4.0</title>
+
+
+</head>
+
+<body>
+    <div class="caja">
+        <div class="logoalura">
+           <!--href="https://es.wikipedia.org/wiki/Enigma_(m%C3%A1quina)"></a>-->  
+            <img class="imagen1" src="proyecto/aluraLogo.png" alt="Logo alura">
+            <h1 class="titulo">MAQUINA ENIGMA</h1>
+        
+        </div>
+        <div class="ladoizquierdo">
+           <input type="text" id="entradatexto" class="textoentrada" style="text-transform: lowercase" placeholder="Ingrese el texto aqui" autocomplete="off"></input>
+
+        </div>
+
+        <div class="ladoderecho">
+            <img id="imagefinal" src="proyecto/imagen final.png" alt="Imagen final de encripado">
+            <h2 id="textoimagenfinal">Ningun mensaje fue encriptado</h2>
+            <textarea id="areadetextofinal" cols="30" rows="10">Ingrese el texto que desees encriptar o desencriptar</textarea>
+            <button type="button" id="btcopiar" onclick="copiartexto()">Copiar</button>
+        </div>
+        <div class="botones">
+            <p id="parrafobotones">Solo minusculas y sin acentos</p>
+            <button type="button" id="btencriptar" onclick="encriptado()">Encriptar</button>
+            <button type="button" id="btdesencriptar" onclick="desencriptado()">Desencriptar</button>
+        </div>
+
+        <footer class="piePagina">
+            
+        </footer>
+
+    </div>
+
+    
+
+</body>
+<footer>
+    <p id="creador">footter</p>
+</footer>
+</html>
