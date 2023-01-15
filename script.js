@@ -1,8 +1,4 @@
 
-
-
-
-
 /*
 `La letra "e" es convertida para "enter"`
 `La letra "i" es convertida para "imes"`
@@ -10,6 +6,15 @@
 `La letra "o" es convertida para "ober"`
 `La letra "u" es convertida para "ufat"`
 */
+function removerCaracteresEspeciales(texto) {
+    if (texto.constructor != String) {
+        return null;
+    }
+
+    let patron = /[^\x20\x2D0-9A-Z\x5Fa-z\xC0-\xD6\xD8-\xF6\xF8-\xFF]/g;
+
+    return texto.replace(patron, '');
+}
 function conversorVocales(letra) {
 	var conversion = " ";
 	if (letra == "a") {
@@ -43,13 +48,14 @@ function imprimir(frase) {
 
 }
 
-const removerAcentos =(str) =>{
-	return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const removerAcentos = (str) => {
+	return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
+
 
 function encriptado() {
 	let input = document.getElementById("entradatexto");
-	input = removerAcentos(input.value);
+	input = removerAcentos(removerCaracteresEspeciales(input.value)); 
 	
 
 	document.getElementById("imagefinal").style.display = "none";		/* oculto la imagen*/
@@ -69,8 +75,8 @@ function encriptado() {
 
 }
 function vocalDesencriptado(vocal) {
-		var salto = 0;
-		
+	var salto = 0;
+
 	if (vocal == "a") {
 		return salto = 1;
 	}
@@ -86,17 +92,18 @@ function vocalDesencriptado(vocal) {
 	if (vocal == "u") {
 		return conversion = 3;
 	}
-	
+
 }
 function desencriptado() {
 	let input = document.getElementById("entradatexto");
-
+	input = removerAcentos(removerCaracteresEspeciales(input.value));
+	
 	document.getElementById("imagefinal").style.display = "none";		/* oculto la imagen*/
 	document.getElementById("textoimagenfinal").style.display = "none"; /* oculto el texto*/
 	document.getElementById("btcopiar").style.display = "show";
 	document.getElementById("btcopiar").style.display = "inherit";
 	let arr = [];
-	arr = msjGuardadoArray(input.value.toLowerCase());
+	arr = msjGuardadoArray(input.toLowerCase());
 	msjDesencriptado = "";
 	for (i = 0; i < arr.length; i++) {
 		var bandera = true;
@@ -114,7 +121,7 @@ function desencriptado() {
 
 	}
 	/*return msjDesencriptado;*/
-	
+
 	document.getElementById("areadetextofinal").innerHTML = msjDesencriptado; /* Muestro el texto desencriptado en textare*/
 
 }
